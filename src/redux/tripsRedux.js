@@ -13,17 +13,23 @@ export const getFilteredTrips = ({trips, filters}) => {
 
   // TODO - filter by duration
 
+
+
   // TODO - filter by tags
+  if(filters.tags){
+    const pattern = new RegExp(filters.tags, 'i');
+    output = output.filter(trip => pattern.test(trip.tags));
+  }
 
   // TODO - sort by cost descending (most expensive goes first)
 
   return output;
 };
 
+// DONE - filter trips by tripId
+
 export const getTripById = ({trips}, tripId) => {
   const filtered = trips.filter(trip => trip.id == tripId); //Kajetan
-
-  // DONE - filter trips by tripId
 
   console.log('filtering trips by tripId:', tripId, filtered);
   return filtered.length ? filtered[0] : {error: true};
