@@ -11,19 +11,25 @@ export const getFilteredTrips = ({trips, filters}) => {
     output = output.filter(trip => pattern.test(trip.name));
   }
 
-  // TODO - filter by duration
+  // DONE - filter by duration
+  if(filters.duration.from && filters.duration.to){ //Kajetan
+    output = output.filter(trip => trip.days >= filters.duration.from && trip.days <= filters.duration.to);
+  }
 
-
-
-  // TODO - filter by tags
-  if(filters.tags){
+  // DONE - filter by tags
+  if(filters.tags){ //Kajetan
     const pattern = new RegExp(filters.tags, 'i');
     output = output.filter(trip => pattern.test(trip.tags));
   }
 
   // TODO - sort by cost descending (most expensive goes first)
 
+  output = output.sort(output.cost);
+
+  console.log('output', output);
+
   return output;
+
 };
 
 // DONE - filter trips by tripId
