@@ -6,6 +6,7 @@ import OrderOptionIcons from './OrderOprionIcons';
 import OrderOptionCheckboxes from './OrderOptionCheckboxes';
 import OrderOptionNumber from './OrderOptionNumber';
 import OrderOptionText from './OrderOptionText';
+import OrderOptionDate from './OrderOptionDate';
 
 const optionTypes = {
   dropdown: OrderOptionDropdown,
@@ -13,10 +14,11 @@ const optionTypes = {
   checkboxes: OrderOptionCheckboxes,
   number: OrderOptionNumber,
   text: OrderOptionText,
+  date: OrderOptionDate,
 };
 
 const OrderOption = ({name, type, id, setOrderOption, ...otherProps}) => {
-  const OptionComponent = optionTypes[type];
+  const OptionComponent = optionTypes[type]; //type bierze dane z poszczególnych plików/komponentów z obiektu OptionTypes
   if(!OptionComponent){
     return null;
   } else {
