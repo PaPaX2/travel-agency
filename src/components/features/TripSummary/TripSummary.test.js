@@ -22,12 +22,12 @@ describe('Component TripSummary', () => {
     const expectedName = 'Marvelous...';
     const expectedCost ='$129,701.23';
     const expectedDays = '7';
-    const component = shallow(<TripSummary name={expectedName} cost={expectedCost} days={expectedDays} tags={[]}/>);
+    const component = shallow(<TripSummary name={expectedName} cost={expectedCost} days={expectedDays}/>);
     const renderedCost = 'from $129,701.23';
     const renderedDays = '7 days';
     expect(component.find('.title').text()).toEqual(expectedName);
-    expect(component.find('.details').children().first().text()).toEqual(renderedDays);
-    expect(component.find('.details').children().last().text()).toEqual(renderedCost);
+    expect(component.find('.details span').children().first().text()).toEqual(renderedDays);
+    expect(component.find('.details span').children().last().text()).toEqual(renderedCost);
   });
 
   it('should give error when one of the props is missed', () => {
