@@ -22,9 +22,10 @@ describe('Component TripSummary', () => {
     const expectedName = 'Marvelous...';
     const expectedCost ='$129,701.23';
     const expectedDays = '7';
-    const component = shallow(<TripSummary name={expectedName} cost={expectedCost} days={expectedDays}/>);
-    const renderedCost = 'from $129,701.23';
-    const renderedDays = '7 days';
+    const tagArray = ['tag1', 'tag2', 'tag3'];
+    const component = shallow(<TripSummary name={expectedName} cost={expectedCost} days={expectedDays} tags={tagArray}/>);
+    const renderedCost = '$129,701.23';
+    const renderedDays = '7';
     expect(component.find('.title').text()).toEqual(expectedName);
     expect(component.find('.details span').children().first().text()).toEqual(renderedDays);
     expect(component.find('.details span').children().last().text()).toEqual(renderedCost);
@@ -34,7 +35,7 @@ describe('Component TripSummary', () => {
     expect(() => shallow(<TripSummary />)).toThrow();
   });
 
-  it('should render tags i proper order', () => {
+  it('should render tags in proper order', () => {
     const tagArray = ['tag1', 'tag2', 'tag3'];
     const component = shallow(<TripSummary tags={tagArray} />);
     for (let i = 0; i < tagArray.length; i++) {
