@@ -9,4 +9,9 @@ describe('Component Order Option', () => {
     const component = shallow(<OrderOption type={expectedType} name={expectedName}/>);
     expect(component).toBeTruthy();
   });
+
+  it('should return empty object if called without required props', () => {
+    const component = shallow(<OrderOption />);
+    expect(component).toEqual({});
+  });
 });
