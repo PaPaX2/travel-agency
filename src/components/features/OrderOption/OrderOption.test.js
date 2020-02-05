@@ -14,4 +14,11 @@ describe('Component Order Option', () => {
     const component = shallow(<OrderOption />);
     expect(component).toEqual({});
   });
+
+  it('should show title from props name', () => {
+    const expectedTitle = 'Accomodation';
+    const typeArray = ['type1', 'type2', 'type3', 'type4', 'type5', 'type6'];
+    const component = shallow(<OrderOption type={'tekst'} name={expectedTitle} component={typeArray}/>);
+    expect(component.find('.title').text()).toEqual(expectedTitle);
+  });
 });
