@@ -17,10 +17,12 @@ class HappyHourAd extends React.Component {
     const { title, promoDescription } = this.props;
 
     return (
-      <div className={styles.comonent}>
+      <div className={styles.component}>
         <h3 classNeme={styles.title}>{title}</h3>
-        <div className={styles.countdown}>{promoDescription}</div>
+        <div className={styles.promoDescription}>{promoDescription}</div>
       </div>
+
+
     );
   }
 
