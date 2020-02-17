@@ -47,6 +47,7 @@ describe('Component DaysToSummer mocked Date', () => {
   checkDaysLeftCalculation('2019:09:22', '273');
 });
 
+/*
 const checkDescriptionAtDate = (date) => {
   it(`should not show anything at summer time ${date}`, () => {
     global.Date = mockDate(`${date}T11:57:58.135Z`);
@@ -79,3 +80,4 @@ describe('Component HappyHourAd with mocked Date and delay', () => {
   checkDescriptionAfterDate( 4, '4 days left');
   checkDescriptionAfterDate(300, '300 days left' );
 });
+*/
