@@ -8,63 +8,54 @@ class daysToSummer extends React.Component {
 
   static propTypes = {
     title: PropTypes.string,
+    oneDay: PropTypes.string,
     promoDescription: PropTypes.string,
   }
 
   static defaultProps = {
-    title: 'Days to summer: ',
+    title: 'days to summer',
+    oneDay: 'day to summer',
   }
+
   countTime() {
 
     let countdown = '';
     const today = new Date();
-    console.log('today:', today);
 
-    const firstDayOfTheYear = new Date(today.getFullYear(), 0, 1);
-    console.log('firstDayOfTheYear:', firstDayOfTheYear);
-
-    const firstSummerDay = new Date(today.getFullYear(), 5, 21);
-    console.log('firstSummerDay: ', firstSummerDay);
-
-    const firstSummerDayNo = Math.ceil((firstSummerDay - firstDayOfTheYear +1) / 86400000);
-    console.log('firstSummerDayNo: ', firstSummerDayNo);
-
+    const nextYearSummerDay = new Date(today.getFullYear() + 1, 5, 21, 12);
+    const firstDayOfTheYear = new Date(today.getFullYear(), 0, 1, 12);
+    const firstSummerDay = new Date(today.getFullYear(), 5, 21, 12);
+    const firstSummerDayNo = Math.ceil((firstSummerDay - firstDayOfTheYear) / 86400000 + 1);
+    const nextYearFirstSummerDayNo = Math.ceil((nextYearSummerDay - (new Date(today.getFullYear() + 1, 0, 1, 12))) / 86400000 + 1);
     const todayNo = Math.ceil((today - firstDayOfTheYear + 1) / 86400000);
-    console.log ('todayNo', todayNo);
-
-    const lastSummerDay = new Date(today.getFullYear(), 8, 23);
-    console.log('lastSummerDay: ', lastSummerDay);
-
-    const lastSummerDayNo = Math.ceil((lastSummerDay - firstDayOfTheYear +1) / 86400000);
-    console.log('lastSummerDayNo:', lastSummerDayNo);
-
-    const endOfYear =  new Date(today.getFullYear(), 11, 31);
-    console.log('endOfYear:', endOfYear);
-
-    const endOfYearNo = Math.ceil((endOfYear - firstDayOfTheYear + 1) / 86400000);
-    console.log('endOfYearNo:', endOfYearNo);
+    const lastSummerDay = new Date(today.getFullYear(), 8, 23, 12);
+    const lastSummerDayNo = Math.ceil((lastSummerDay - firstDayOfTheYear + 1) / 86400000);
+    const endOfYear =  new Date(today.getFullYear(), 11, 31, 12);
+    const endOfYearNo = Math.ceil(((endOfYear - firstDayOfTheYear) / 86400000) + 1);
 
     if (firstSummerDayNo > todayNo) {
       countdown = firstSummerDayNo - todayNo;
     }
-    else if (firstSummerDayNo < todayNo < lastSummerDayNo) {
-      countdown = 'undefined';
+
+    else if (todayNo < lastSummerDayNo) {
+      countdown = null; //firstSummerDayNo - todayNo
     }
-    else countdown = endOfYearNo - todayNo + firstSummerDayNo;
+    else if (lastSummerDayNo < todayNo) {
+      countdown = endOfYearNo - todayNo + nextYearFirstSummerDayNo;
+    }
 
     return countdown;
   }
 
   render() {
-    const { title } = this.props;
+    const { title, oneDay } = this.props;
     const countdown = this.countTime();
 
     return (
       <div className={styles.component}>
-        <h3 className={styles.counter}>{title}{countdown}</h3>
+        <h3 className={styles.counter}>{countdown <= 0 ? null : countdown == 1 ? countdown + ' ' + oneDay : countdown + ' ' + title}</h3>
       </div>
     );
   }
 }
-
 export default daysToSummer;
