@@ -61,9 +61,7 @@ describe('Component DaysToSummer mocked Date', () => {
 
     });
   }
-});
 
-describe('Component DaysToSummer with mocked Date', () => {
   it(`should not show anything at summer time ${datesToCheck[10]}`, () => {
     global.Date = mockDate(`${datesToCheck[10]}T11:57:58.135Z`);
 
